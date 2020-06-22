@@ -23,9 +23,10 @@ std::vector<Background *> StartScene::backgrounds() {
 }
 
 void StartScene::load() {
-    backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(mapPal, sizeof(mapPal)));
+    //engine.get()->disableText();
+    backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(pokemapPal, sizeof(pokemapPal)));
 
-    bg = std::unique_ptr<Background>(new Background(0, mapTiles, sizeof(mapTiles), mapMap, sizeof(mapMap)));
+    bg = std::unique_ptr<Background>(new Background(0, pokemapTiles, sizeof(pokemapTiles), pokemapMap, sizeof(pokemapMap)));
     bg.get()->useMapScreenBlock(24);
 
     SpriteBuilder<Sprite> builder;
@@ -45,7 +46,7 @@ void StartScene::load() {
 }
 
 void StartScene::tick(u16 keys) {
-    TextStream::instance().setText(engine->getTimer()->to_string(), 18, 1);
+    //TextStream::instance().setText(engine->getTimer()->to_string(), 18, 1);
 /*
     if(pressingAorB && !((keys & KEY_A) || (keys & KEY_B))) {
         engine->getTimer()->toggle();
