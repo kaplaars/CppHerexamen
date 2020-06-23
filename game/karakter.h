@@ -1,3 +1,19 @@
+
+//{{BLOCK(j_german)
+
+//======================================================================
+//
+//	j_german, 32x96@8,
+//	Transparent color : 00,00,00
+//	+ 48 tiles not compressed
+//	Total size: 3072 = 3072
+//
+//	Time-stamp: 2019-12-17, 16:22:55
+//	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
+//	( http://www.coranac.com/projects/#grit )
+//
+//======================================================================
+
 const unsigned int karakterTiles[768] __attribute__((aligned(4)))=
         {
                 0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
@@ -108,3 +124,5 @@ const unsigned int karakterTiles[768] __attribute__((aligned(4)))=
                 0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
                 0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
         };
+
+//}}BLOCK(j_german)

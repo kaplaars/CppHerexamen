@@ -15,7 +15,7 @@
 StartScene::StartScene(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
 std::vector<Sprite *> StartScene::sprites() {
-    return {};
+    return {  animation.get()};
 }
 
 std::vector<Background *> StartScene::backgrounds() {
@@ -26,19 +26,20 @@ std::vector<Background *> StartScene::backgrounds() {
 
 void StartScene::load() {
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(gbmapPal, sizeof(gbmapPal)));
+    foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(sharedPal, sizeof(sharedPal)));
 
     bg = std::unique_ptr<Background>(new Background(0, gbmapTiles, sizeof(gbmapTiles), gbmapMap, sizeof(gbmapMap)));
     bg.get()->useMapScreenBlock(24);
 
     SpriteBuilder<Sprite> builder;
-/*
+
     animation = builder
             .withData(karakterTiles, sizeof(karakterTiles))
             .withSize(SIZE_32_32)
-            .withAnimated(3, 3)
-            .withLocation(100, 50)
+            .withAnimated(3, 10)
+            .withLocation(100, 100)
             .buildPtr();
-
+/*
     TextStream::instance().setText("PRESS START", 3, 8);
 */
     engine->getTimer()->start();
@@ -48,29 +49,16 @@ void StartScene::load() {
 
 void StartScene::tick(u16 keys) {
     //TextStream::instance().setText(engine->getTimer()->to_string(), 18, 1);
-/*
-    if(pressingAorB && !((keys & KEY_A) || (keys & KEY_B))) {
-        engine->getTimer()->toggle();
-        pressingAorB = false;
-    }
 
-    if(keys & KEY_START) {
-        if(!engine->isTransitioning()) {
-            //engine->enqueueSound(zelda_secret_16K_mono, zelda_secret_16K_mono_bytes);
-
-            TextStream::instance() << "entered: starting next scene";
-
-            //engine->transitionIntoScene(new FlyingStuffScene(engine), new FadeOutScene(2));
-        }
-    } else if(keys & KEY_LEFT) {
-        animation->flipHorizontally(true);
+    if(keys & KEY_LEFT) {
+        animation->setVelocity(-2, 0);
     } else if(keys & KEY_RIGHT) {
-        animation->flipHorizontally(false);
+        animation->setVelocity(2, 0);
     } else if(keys & KEY_UP) {
-        animation->flipVertically(true);
+        animation->setVelocity(0, -2);
     } else if(keys & KEY_DOWN) {
-        animation->flipVertically(false);
-    } else if((keys & KEY_A) || (keys & KEY_B)) {
-        pressingAorB = true;
-    }*/
+        animation->setVelocity(0, 2);
+    } else{
+        animation->setVelocity(0, 0);
+    }
 }

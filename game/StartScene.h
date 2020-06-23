@@ -10,7 +10,7 @@
 class StartScene : public Scene {
 private:
     std::unique_ptr<Background> bg;
-
+    std::unique_ptr<Sprite> animation;
 public:
     StartScene(const std::shared_ptr<GBAEngine> &engine);
 
