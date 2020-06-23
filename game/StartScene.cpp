@@ -1,9 +1,11 @@
 
+
 #include <libgba-sprite-engine/sprites/sprite_builder.h>
 #include <libgba-sprite-engine/background/text_stream.h>
 #include <libgba-sprite-engine/gba/tonc_memdef.h>
 #include <libgba-sprite-engine/gba_engine.h>
 #include <libgba-sprite-engine/effects/fade_out_scene.h>
+
 #include "StartScene.h"
 #include "CollorPallet.h"
 #include "karakter.h"
@@ -23,10 +25,9 @@ std::vector<Background *> StartScene::backgrounds() {
 }
 
 void StartScene::load() {
-    //engine.get()->disableText();
-    backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(pokemapPal, sizeof(pokemapPal)));
+    backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(gbmapPal, sizeof(gbmapPal)));
 
-    bg = std::unique_ptr<Background>(new Background(0, pokemapTiles, sizeof(pokemapTiles), pokemapMap, sizeof(pokemapMap)));
+    bg = std::unique_ptr<Background>(new Background(0, gbmapTiles, sizeof(gbmapTiles), gbmapMap, sizeof(gbmapMap)));
     bg.get()->useMapScreenBlock(24);
 
     SpriteBuilder<Sprite> builder;
