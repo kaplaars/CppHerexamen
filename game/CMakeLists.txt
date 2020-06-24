@@ -6,7 +6,10 @@ add_executable(${PROJECT_NAME}.elf
         StartScene.h
         CollorPallet.h
         karakter.h
-        background.h)
+        background.h
+        MiniGame1.cpp
+        MiniGame1.h
+        GameRoom.h RPCselect.h)
 
 target_link_libraries(${PROJECT_NAME}.elf gba-sprite-engine)
 
