@@ -1,13 +1,9 @@
-
-
-class MiniGame1 : public Scene {
+class MiniGame2 : public Scene {
 private:
     std::unique_ptr<Background> bg;
-    std::unique_ptr<Sprite> RPC;
-    int randnum, score = 0;
 
 public:
-    MiniGame1(const std::shared_ptr<GBAEngine> &engine);
+    MiniGame2(const std::shared_ptr<GBAEngine> &engine);
 
     std::vector<Sprite *> sprites() override;
 
@@ -16,6 +12,4 @@ public:
     void load() override;
 
     void tick(u16 keys) override;
-
-    int getScore();
 };

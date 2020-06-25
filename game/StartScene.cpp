@@ -7,6 +7,8 @@
 
 #include "StartScene.h"
 #include "MiniGame1.h"
+#include "MiniGame2.h"
+#include "MiniGame3.h"
 
 #include "CollorPallet.h"
 #include "karakter.h"
@@ -17,7 +19,7 @@
 StartScene::StartScene(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
 std::vector<Sprite *> StartScene::sprites() {
-    return {  animation.get()};
+    return {animation.get()};
 }
 
 std::vector<Background *> StartScene::backgrounds() {
@@ -51,7 +53,9 @@ void StartScene::load() {
 }
 
 void StartScene::tick(u16 keys) {
+    //TextStream::instance().setText(std::string("Score: ") + std::to_string(MiniGame1::getScore()), 7, 10);
 
+    //manneke bewegen
     if(keys & KEY_LEFT) {
         if((animation->getY()>10 && animation->getX()<70 && animation->getY()<83)||(animation->getY()<38 && animation->getX()==155)) {
             animation->setVelocity(0, 0);
@@ -80,9 +84,23 @@ void StartScene::tick(u16 keys) {
         animation->setVelocity(0, 0);
     }
 
+    //naar een minigame gaan
+        //minigame 1
     if(animation->getY()>70 && animation->getY()<100 && animation->getX()>20 && animation->getX()<50) {
         if(keys & KEY_A) {
             engine->setScene(new MiniGame1(engine));
+        }
+    }
+        //minigame 2
+    if(animation->getY()>37 && animation->getY()<68 && animation->getX()>100 && animation->getX()<130) {
+        if(keys & KEY_A) {
+            engine->setScene(new MiniGame2(engine));
+        }
+    }
+        //minigame 3
+    if(animation->getY()>74 && animation->getY()<104 && animation->getX()>185 && animation->getX()<215) {
+        if(keys & KEY_A) {
+            engine->setScene(new MiniGame3(engine));
         }
     }
 }

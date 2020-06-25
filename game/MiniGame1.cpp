@@ -25,29 +25,35 @@ std::vector<Background *> MiniGame1::backgrounds() {
 }
 
 void MiniGame1::tick(u16 keys) {
+    //ga terug naar main map
     if(keys & KEY_L){
         engine->setScene(new StartScene(engine));
     }
-
+    //keuze blad steen of schaar
     if(keys & KEY_UP){
         RPC->animateToFrame(0);
-        selection = 0;
     }else if( keys & KEY_LEFT) {
         RPC->animateToFrame(1);
-        selection = 1;
     }else if( keys & KEY_RIGHT){
         RPC->animateToFrame(2);
-        selection = 2;
     }
 
+    //spel spelen (blad steen schaar)
     if(keys & KEY_A){
         randnum = rand()%100;
         if(randnum<33){
-            TextStream::instance().setText("It's a random generator, you got lucky!! ", 3, 8);
+            TextStream::instance().setText("It's a random generator, you got lucky!! ", 3, 1);
+            score=+100;
         }else if(randnum > 66){
-            TextStream::instance().setText("Only one can be the best", 3, 8);
+            TextStream::instance().setText("Only one can be the best", 3, 1);
+            score=+50;
         }else{
-            TextStream::instance().setText("great minds thing alike, a tie", 3, 8);
+            TextStream::instance().setText("great minds thing alike, a tie", 3, 1);
+            if(score > 50) {
+                score = -50;
+            }else{
+                score = 0;
+            }
         }
     }
 }

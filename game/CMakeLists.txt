@@ -9,7 +9,7 @@ add_executable(${PROJECT_NAME}.elf
         background.h
         MiniGame1.cpp
         MiniGame1.h
-        GameRoom.h RPCselect.h)
+        GameRoom.h RPCselect.h MiniGame2.cpp MiniGame2.h GameRoom2.h MiniGame3.h MiniGame3.cpp GameRoom3.h)
 
 target_link_libraries(${PROJECT_NAME}.elf gba-sprite-engine)
 
