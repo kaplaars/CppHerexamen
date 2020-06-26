@@ -27,6 +27,53 @@ void MiniGame3::tick(u16 keys) {
     if(keys & KEY_L){
         engine->setScene(new StartScene(engine));
     }
+    TextStream::instance().setText(engine->getTimer()->to_string(), 3, 1);
+
+    if(engine->getTimer()->to_string() == "0h:0m:30s:000"){
+        TextStream::instance().setText("pres A", 3, 1);
+    }
+    if(engine->getTimer()->to_string() == "0h:0m:31s:000" && keys & KEY_A){
+        score += 50;
+    }
+
+    if(engine->getTimer()->to_string() == "0h:0m:40s:000"){
+        TextStream::instance().setText("pres B", 3, 1);
+    }
+    if(engine->getTimer()->to_string() == "0h:0m:41s:000" && keys & KEY_B){
+        score += 50;
+    }
+
+    if(engine->getTimer()->to_string() == "0h:0m:45s:000"){
+        TextStream::instance().setText("pres A", 3, 1);
+    }
+    if(engine->getTimer()->to_string() == "0h:0m:46s:000" && keys & KEY_A){
+        score += 50;
+    }
+
+    if(engine->getTimer()->to_string() == "0h:0m:55s:000"){
+        TextStream::instance().setText("pres B", 3, 1);
+    }
+    if(engine->getTimer()->to_string() == "0h:0m:56s:000" && keys & KEY_B){
+        score += 50;
+    }
+
+    if(engine->getTimer()->to_string() == "0h:0m:58s:000"){
+        TextStream::instance().setText("pres UP", 3, 1);
+    }
+    if(engine->getTimer()->to_string() == "0h:0m:59s:000" && keys & KEY_UP){
+        score += 50;
+    }
+
+    if(engine->getTimer()->to_string() == "0h:0m:60s:000"){
+        TextStream::instance().setText("pres DOWN", 3, 1);
+    }
+    if(engine->getTimer()->to_string() == "0h:0m:61s:000" && keys & KEY_DOWN){
+        score += 50;
+    }
+
+    if(engine->getTimer()->to_string() == "0h:0m:65s:000"){
+        TextStream::instance().setText("well done cowboy", 3, 1);
+    }
 }
 
 void MiniGame3::load() {
@@ -37,4 +84,6 @@ void MiniGame3::load() {
 
     bg = std::unique_ptr<Background>(new Background(0, huisje_3Tiles, sizeof(huisje_3Tiles), huisje_3Map, sizeof(huisje_3Map)));
     bg.get()->useMapScreenBlock(24);
+
+    engine->getTimer()->start();
 }

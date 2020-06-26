@@ -240,7 +240,6 @@ void MiniGame2::load() {
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(huisje_2Pal, sizeof(huisje_2Pal)));
 
     engine.get()->enableText();
-    TextStream::instance().setFontColor(BLD_WHITE);
 
     bg = std::unique_ptr<Background>(new Background(0, huisje_2Tiles, sizeof(huisje_2Tiles), huisje_2Map, sizeof(huisje_2Map)));
     bg.get()->useMapScreenBlock(24);
