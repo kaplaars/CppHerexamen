@@ -12,6 +12,8 @@
 
 MiniGame1::MiniGame1(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
+//blad steen schaar
+
 std::vector<Sprite *> MiniGame1::sprites() {
     return {
         RPC.get()
