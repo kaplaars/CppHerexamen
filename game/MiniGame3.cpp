@@ -82,8 +82,8 @@ void MiniGame3::load() {
 
     engine.get()->enableText();
 
-    bg = std::unique_ptr<Background>(new Background(0, huisje_3Tiles, sizeof(huisje_3Tiles), huisje_3Map, sizeof(huisje_3Map)));
-    bg.get()->useMapScreenBlock(24);
+    bg = std::unique_ptr<Background>(new Background(1, huisje_3Tiles, sizeof(huisje_3Tiles), huisje_3Map, sizeof(huisje_3Map)));
+    bg.get()->useMapScreenBlock(16);
 
     engine->getTimer()->start();
 }

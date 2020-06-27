@@ -241,8 +241,8 @@ void MiniGame2::load() {
 
     engine.get()->enableText();
 
-    bg = std::unique_ptr<Background>(new Background(0, huisje_2Tiles, sizeof(huisje_2Tiles), huisje_2Map, sizeof(huisje_2Map)));
-    bg.get()->useMapScreenBlock(24);
+    bg = std::unique_ptr<Background>(new Background(1, huisje_2Tiles, sizeof(huisje_2Tiles), huisje_2Map, sizeof(huisje_2Map)));
+    bg.get()->useMapScreenBlock(16);
 
     story = (rand()%2);
     level = 0;

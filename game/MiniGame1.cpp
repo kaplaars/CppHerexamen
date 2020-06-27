@@ -41,7 +41,8 @@ void MiniGame1::tick(u16 keys) {
     }
 
     //spel spelen (blad steen schaar)
-    if(keys & KEY_A){
+    if(keys & KEY_A && pressed == 0){
+        TextStream::instance().clear();
         randnum = rand()%100;
         if(randnum<33){
             TextStream::instance().setText("It's a random generator, you got lucky!! ", 3, 1);
@@ -57,6 +58,11 @@ void MiniGame1::tick(u16 keys) {
                 score = 0;
             }
         }
+        pressed = 1;
+    }
+
+    if(!keys&KEY_A){
+        pressed = 0;
     }
 }
 
@@ -67,14 +73,14 @@ void MiniGame1::load() {
 
     engine.get()->enableText();
 
-    bg = std::unique_ptr<Background>(new Background(0, huisje_1Tiles, sizeof(huisje_1Tiles), huisje_1Map, sizeof(huisje_1Map)));
-    bg.get()->useMapScreenBlock(24);
+    bg = std::unique_ptr<Background>(new Background(1, huisje_1Tiles, sizeof(huisje_1Tiles), huisje_1Map, sizeof(huisje_1Map)));
+    bg.get()->useMapScreenBlock(16);
 
     SpriteBuilder<Sprite> builder;
 
     RPC = builder
             .withData(RPCselectTiles, sizeof(RPCselectTiles))
             .withSize(SIZE_32_32)
-            .withLocation(75, 110)
+            .withLocation(80, 70)
             .buildPtr();
 }
