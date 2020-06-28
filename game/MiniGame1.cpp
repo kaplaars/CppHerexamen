@@ -33,11 +33,11 @@ void MiniGame1::tick(u16 keys) {
     }
     //keuze blad steen of schaar
     if(keys & KEY_UP){
-        RPC->animateToFrame(0);
+        RPC->animateToFrame(3);
     }else if( keys & KEY_LEFT) {
-        RPC->animateToFrame(1);
-    }else if( keys & KEY_RIGHT){
         RPC->animateToFrame(2);
+    }else if( keys & KEY_RIGHT){
+        RPC->animateToFrame(1);
     }
 
     //spel spelen (blad steen schaar)
