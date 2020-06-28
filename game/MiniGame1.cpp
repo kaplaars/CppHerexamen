@@ -83,4 +83,6 @@ void MiniGame1::load() {
             .withSize(SIZE_32_32)
             .withLocation(80, 70)
             .buildPtr();
+
+    RPC->animateToFrame(3);
 }
