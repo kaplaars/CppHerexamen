@@ -45,13 +45,13 @@ void MiniGame1::tick(u16 keys) {
         TextStream::instance().clear();
         randnum = rand()%100;
         if(randnum<33){
-            TextStream::instance().setText("It's a random generator, you got lucky!! ", 3, 1);
+            TextStream::instance().setText("It's a random generator, you got lucky!! ", 1, 1);
             score=+100;
         }else if(randnum > 66){
-            TextStream::instance().setText("Only one can be the best", 3, 1);
+            TextStream::instance().setText("Only one can be the best", 1, 1);
             score=+50;
         }else{
-            TextStream::instance().setText("great minds thing alike, a tie", 3, 1);
+            TextStream::instance().setText("great minds thing alike, a tie", 1, 1);
             if(score > 50) {
                 score = -50;
             }else{

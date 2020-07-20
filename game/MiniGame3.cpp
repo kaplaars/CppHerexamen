@@ -6,14 +6,15 @@
 
 #include "MiniGame3.h"
 #include "GameRoom3.h"
+
 #include "StartScene.h"
 #include "CollorPallet.h"
+#include "karakter.h"
 
 MiniGame3::MiniGame3(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
 std::vector<Sprite *> MiniGame3::sprites() {
-    return {
-    };
+    return {karakter.get()};
 }
 
 std::vector<Background *> MiniGame3::backgrounds() {
@@ -24,55 +25,75 @@ std::vector<Background *> MiniGame3::backgrounds() {
 
 void MiniGame3::tick(u16 keys) {
     //ga terug naar main map
-    if(keys & KEY_L){
+    if(keys & KEY_L) {
         engine->setScene(new StartScene(engine));
     }
-    TextStream::instance().setText(engine->getTimer()->to_string(), 3, 1);
 
-    if(engine->getTimer()->to_string() == "0h:0m:30s:000"){
+    if(engine->getTimer()->getMsecs()>900){
+        pressed = 0;
+    }
+
+    TextStream::instance().setText(engine->getTimer()->to_string(), 18, 1);
+    TextStream::instance().setText("score: " + std::to_string(score3), 2, 1);
+
+    if(engine->getTimer()->getSecs() == 5){
         TextStream::instance().setText("pres A", 3, 1);
+        level = 1;
     }
-    if(engine->getTimer()->to_string() == "0h:0m:31s:000" && keys & KEY_A){
-        score += 50;
+    if(level == 1 && keys & KEY_A && pressed == 0){
+        score3 = score3+(999-engine->getTimer()->getMsecs());
+        pressed = 1;
     }
 
-    if(engine->getTimer()->to_string() == "0h:0m:40s:000"){
+    if(engine->getTimer()->getSecs() == 6){
         TextStream::instance().setText("pres B", 3, 1);
+        level = 2;
     }
-    if(engine->getTimer()->to_string() == "0h:0m:41s:000" && keys & KEY_B){
-        score += 50;
+    if(level == 2 && keys & KEY_B && pressed == 0){
+        score3 = score3+(999-engine->getTimer()->getMsecs());
+        pressed = 1;
     }
 
-    if(engine->getTimer()->to_string() == "0h:0m:45s:000"){
+    if(engine->getTimer()->getSecs() == 7){
         TextStream::instance().setText("pres A", 3, 1);
+        level = 3;
     }
-    if(engine->getTimer()->to_string() == "0h:0m:46s:000" && keys & KEY_A){
-        score += 50;
+    if(level == 3 && keys & KEY_A && pressed == 0){
+        score3 = score3+(999-engine->getTimer()->getMsecs());
+        pressed = 1;
     }
 
-    if(engine->getTimer()->to_string() == "0h:0m:55s:000"){
+    if(engine->getTimer()->getSecs() == 8){
         TextStream::instance().setText("pres B", 3, 1);
+        level = 4;
     }
-    if(engine->getTimer()->to_string() == "0h:0m:56s:000" && keys & KEY_B){
-        score += 50;
+    if(level == 4 && keys & KEY_B && pressed == 0){
+        score3 = score3+(999-engine->getTimer()->getMsecs());
+        pressed = 1;
     }
 
-    if(engine->getTimer()->to_string() == "0h:0m:58s:000"){
+    if(engine->getTimer()->getSecs() == 9){
         TextStream::instance().setText("pres UP", 3, 1);
+        level = 5;
     }
-    if(engine->getTimer()->to_string() == "0h:0m:59s:000" && keys & KEY_UP){
-        score += 50;
+    if(level == 5 && keys & KEY_UP && pressed == 0){
+        score3 = score3+(999-engine->getTimer()->getMsecs());
+        pressed = 1;
     }
 
-    if(engine->getTimer()->to_string() == "0h:0m:60s:000"){
+    if(engine->getTimer()->getSecs() == 10){
         TextStream::instance().setText("pres DOWN", 3, 1);
-    }
-    if(engine->getTimer()->to_string() == "0h:0m:61s:000" && keys & KEY_DOWN){
-        score += 50;
+        level = 6;
     }
 
-    if(engine->getTimer()->to_string() == "0h:0m:65s:000"){
+    if(level == 6 && keys & KEY_DOWN && pressed == 0){
+        score3 = score3+(999-engine->getTimer()->getMsecs());
+        pressed = 1;
+    }
+
+    if(engine->getTimer()->getSecs() == 12){
         TextStream::instance().setText("well done cowboy", 3, 1);
+        level = 7;
     }
 }
 
@@ -82,8 +103,22 @@ void MiniGame3::load() {
 
     engine.get()->enableText();
 
+    level = 0;
+
     bg = std::unique_ptr<Background>(new Background(1, huisje_3Tiles, sizeof(huisje_3Tiles), huisje_3Map, sizeof(huisje_3Map)));
     bg.get()->useMapScreenBlock(16);
 
+    engine->getTimer()->reset();
     engine->getTimer()->start();
+
+    SpriteBuilder<Sprite> builder;
+
+    karakter = builder
+            .withData(karakterTiles, sizeof(karakterTiles))
+            .withSize(SIZE_32_32)
+            .withLocation(50, 50)
+            .withAnimated(3, 20)
+            .withinBounds()
+            .buildPtr();
+
 }
