@@ -30,7 +30,11 @@ void MiniGame1::tick(u16 keys) {
     //ga terug naar main map
     if(keys & KEY_L){
         engine->setScene(new StartScene(engine));
+        StartScene::totaalscore = StartScene::totaalscore + score1;
     }
+
+    TextStream::instance().setText("score:" + std::to_string(score1), 3, 1);
+
     //keuze blad steen of schaar
     if(keys & KEY_UP){
         RPC->animateToFrame(3);
@@ -45,17 +49,19 @@ void MiniGame1::tick(u16 keys) {
         TextStream::instance().clear();
         randnum = rand()%100;
         if(randnum<33){
-            TextStream::instance().setText("It's a random generator, you got lucky!! ", 1, 1);
-            score=+100;
+            TextStream::instance().setText("It's a random generator,", 1, 1);
+            TextStream::instance().setText("you got lucky!! ", 2, 1);
+            score1=score1+100;
         }else if(randnum > 66){
-            TextStream::instance().setText("Only one can be the best", 1, 1);
-            score=+50;
+            TextStream::instance().setText("great minds think alike", 1, 1);
+            TextStream::instance().setText("", 2, 1);
         }else{
-            TextStream::instance().setText("great minds thing alike, a tie", 1, 1);
-            if(score > 50) {
-                score = -50;
+            TextStream::instance().setText("Only one can be the best", 1, 1);
+            TextStream::instance().setText("", 2, 1);
+            if(score1 > 50) {
+                score1 = score1-50;
             }else{
-                score = 0;
+                score1 = 0;
             }
         }
         pressed = 1;
@@ -81,7 +87,7 @@ void MiniGame1::load() {
     RPC = builder
             .withData(RPCselectTiles, sizeof(RPCselectTiles))
             .withSize(SIZE_32_32)
-            .withLocation(80, 70)
+            .withLocation(80, 80)
             .buildPtr();
 
     RPC->animateToFrame(3);

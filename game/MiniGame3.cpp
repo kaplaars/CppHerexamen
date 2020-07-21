@@ -27,6 +27,7 @@ void MiniGame3::tick(u16 keys) {
     //ga terug naar main map
     if(keys & KEY_L) {
         engine->setScene(new StartScene(engine));
+        StartScene::totaalscore = StartScene::totaalscore + score3;
     }
 
     if(engine->getTimer()->getMsecs()>900){
@@ -95,6 +96,18 @@ void MiniGame3::tick(u16 keys) {
         TextStream::instance().setText("well done cowboy", 3, 1);
         level = 7;
     }
+
+    if(keys & KEY_B) {
+        karakter->setVelocity(1, 0);
+    } else if(keys & KEY_A) {
+        karakter->setVelocity(-1, 0);
+    } else if(keys & KEY_UP) {
+        karakter->setVelocity(0, 1);
+    } else if(keys & KEY_DOWN) {
+        karakter->setVelocity(0, -1);
+    } else{
+        karakter->setVelocity(0, 0);
+    }
 }
 
 void MiniGame3::load() {
@@ -116,7 +129,7 @@ void MiniGame3::load() {
     karakter = builder
             .withData(karakterTiles, sizeof(karakterTiles))
             .withSize(SIZE_32_32)
-            .withLocation(50, 50)
+            .withLocation(120, 70)
             .withAnimated(3, 20)
             .withinBounds()
             .buildPtr();

@@ -1,7 +1,7 @@
 class MiniGame2 : public Scene {
 private:
     std::unique_ptr<Background> bg;
-    int story = 0, level = 0, score, pressed = 0;
+    int story = 0, level = 0, score2, pressed = 0;
 
 public:
     MiniGame2(const std::shared_ptr<GBAEngine> &engine);

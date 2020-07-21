@@ -22,7 +22,7 @@ public:
 
     void tick(u16 keys) override;
 
-    int *totaalscore;
+    static int totaalscore;
 };
 
 

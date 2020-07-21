@@ -16,7 +16,7 @@
 #include "sample_sound.h"
 #include "background.h"
 
-StartScene::StartScene(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
+StartScene::StartScene(const std::shared_ptr<GBAEngine> &engine) : Scene(engine){}
 
 std::vector<Sprite *> StartScene::sprites() {
     return {animation.get()};
@@ -48,12 +48,12 @@ void StartScene::load() {
             .buildPtr();
 
     engine->getTimer()->start();
-
+    TextStream::instance().setText("Score: " + std::to_string(totaalscore), 7, 10);
     engine->enqueueMusic(zelda_music_16K_mono, zelda_music_16K_mono_bytes);
 }
 
 void StartScene::tick(u16 keys) {
-    //TextStream::instance().setText(std::string("Score: ") + std::to_string(MiniGame1::getScore()), 7, 10);
+
 
     //manneke bewegen
     if(keys & KEY_LEFT) {
