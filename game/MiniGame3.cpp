@@ -102,9 +102,9 @@ void MiniGame3::tick(u16 keys) {
     } else if(keys & KEY_A) {
         karakter->setVelocity(-1, 0);
     } else if(keys & KEY_UP) {
-        karakter->setVelocity(0, 1);
-    } else if(keys & KEY_DOWN) {
         karakter->setVelocity(0, -1);
+    } else if(keys & KEY_DOWN) {
+        karakter->setVelocity(0, 1);
     } else{
         karakter->setVelocity(0, 0);
     }
@@ -117,6 +117,7 @@ void MiniGame3::load() {
     engine.get()->enableText();
 
     level = 0;
+    score3 = 0;
 
     bg = std::unique_ptr<Background>(new Background(1, huisje_3Tiles, sizeof(huisje_3Tiles), huisje_3Map, sizeof(huisje_3Map)));
     bg.get()->useMapScreenBlock(16);
