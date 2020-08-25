@@ -27,7 +27,7 @@ void MiniGame3::tick(u16 keys) {
     //ga terug naar main map
     if(keys & KEY_L) {
         engine->setScene(new StartScene(engine));
-        StartScene::totaalscore = StartScene::totaalscore + score3;
+       // StartScene::totaalscore = StartScene::totaalscore + score3;
     }
 
     if(engine->getTimer()->getMsecs()>900){
@@ -35,7 +35,7 @@ void MiniGame3::tick(u16 keys) {
     }
 
     TextStream::instance().setText(engine->getTimer()->to_string(), 18, 1);
-    TextStream::instance().setText("score: " + std::to_string(score3), 2, 1);
+   // TextStream::instance().setText("score: " + std::to_string(score3), 2, 1);
 
     if(engine->getTimer()->getSecs() == 5){
         TextStream::instance().setText("pres A", 3, 1);

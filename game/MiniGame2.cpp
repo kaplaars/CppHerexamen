@@ -28,7 +28,7 @@ void MiniGame2::tick(u16 keys) {
     //ga terug naar main map
     if(keys & KEY_L){
         engine->setScene(new StartScene(engine));
-        StartScene::totaalscore = StartScene::totaalscore + score2;
+       // StartScene::totaalscore = StartScene::totaalscore + score2;
     }
 
     if(!keys&KEY_ANY){

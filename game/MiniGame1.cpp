@@ -30,7 +30,7 @@ void MiniGame1::tick(u16 keys) {
     //ga terug naar main map
     if(keys & KEY_L){
         engine->setScene(new StartScene(engine));
-        StartScene::totaalscore = StartScene::totaalscore + score1;
+       // StartScene::totaalscore = StartScene::totaalscore + score1;
     }
 
     TextStream::instance().setText("score:" + std::to_string(score1), 3, 1);

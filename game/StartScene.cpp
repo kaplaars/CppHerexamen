@@ -46,7 +46,7 @@ void StartScene::load() {
             .buildPtr();
 
     engine->getTimer()->start();
-    TextStream::instance().setText("Score: " + std::to_string(totaalscore), 7, 10);
+    //TextStream::instance().setText("Score: " + std::to_string(totaalscore), 1, 3);
     engine->enqueueMusic(zelda_music_16K_mono, zelda_music_16K_mono_bytes);
 }
 
